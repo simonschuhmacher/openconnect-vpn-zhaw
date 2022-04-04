@@ -1,0 +1,68 @@
+#!/bin/sh
+
+# Check if script is running as sudo
+if [ "$(id -u)" == "0" ]
+then
+
+VPN_SERVER="ras.zhaw.ch"
+VPN_USER="yourname@students.zhaw.ch"
+
+OC_CMD=$1
+OC_PID=$(sudo pgrep -x "openconnect")
+
+show_status() {
+    if [ -z "$OC_PID" ]
+    then
+        echo "OpenConnect currently not running"
+    else
+        echo "OpenConnect currently running with PID $OC_PID"
+    fi
+}
+
+start_oc() {
+    if [ -z "$OC_PID" ]
+    then
+        echo "OpenConnect not running. Starting it."
+        sudo openconnect-sso \
+        --server "$VPN_SERVER" \
+        --user="$VPN_USER" \
+        --browser-display-mode hidden \
+        -- \
+        --background \
+        --quiet
+    else
+        echo "OpenConnect already running. Try stopping it first."
+    fi
+}
+
+stop_oc() {
+    if [ ! -z "$OC_PID" ]
+    then
+        echo "OpenConnect currently running. Stopping it."
+        sudo kill "$OC_PID"
+    else
+        echo "OpenConnect currently not running."
+    fi
+}
+
+if [ -z "$OC_CMD" ] && [ -z "$OC_PID" ]
+then
+    start_oc
+elif [ -z "$OC_CMD" ] && [ ! -z "$OC_PID" ]
+then
+    show_status
+elif [ "$OC_CMD" == "start" ]
+then
+    start_oc
+elif [ "$OC_CMD" == "status" ]
+then
+    show_status
+elif [ "$OC_CMD" == "stop" ]
+then
+    stop_oc
+fi
+
+# Not running as sudo, restart as sudo
+else
+    sudo "$0" "$@"
+fi
