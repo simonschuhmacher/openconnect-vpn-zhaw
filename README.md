@@ -66,10 +66,10 @@ chmod +x vpnzhaw
 Place the modified script at `usr/local/bin/`
 
 
-## Allow to run the script without sudo
+## Allow to run the script without sudo (optional)
 
 The script needs root permission to work properly.
-To allow executing it with sudo, add the file `/private/etc/sudoers.d/vpnzhaw`, for example using nano:
+To allow executing it with sudo without entering a password, add the file `/private/etc/sudoers.d/vpnzhaw`, for example using nano:
 
 ```shell
 sudo nano "/private/etc/sudoers.d/vpnzhaw"
