@@ -83,6 +83,8 @@ yourmacusername ALL=(ALL) NOPASSWD: /usr/local/bin/vpnzhaw
 
 replace *yourmacusername* with your actual username. To get this, run `whoami` in terminal.
 
+(If using nano, save with `CTRL+o` and exit with `CTRL+x`)
+
 
 ## Using the script
 
