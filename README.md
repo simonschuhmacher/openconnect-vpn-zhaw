@@ -8,7 +8,7 @@ The following tools need to be installed to use the script.
 ## Install OpenConnect
 
 ```shell
-brew install openconnect
+brew install pipx
 ```
 
 
