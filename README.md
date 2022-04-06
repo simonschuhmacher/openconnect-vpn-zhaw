@@ -8,7 +8,7 @@ The following tools need to be installed to use the script.
 ## Install OpenConnect
 
 ```shell
-brew install pipx
+brew install openconnect
 ```
 
 
@@ -19,7 +19,7 @@ brew install pipx
 Optional, but recommended, see [https://github.com/pypa/pipx](https://github.com/pypa/pipx).
 
 ```shell
-pip3 install --user pipx
+brew install pipx
 ```
 
 
