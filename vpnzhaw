@@ -61,14 +61,7 @@ stop_oc() {
     if [ ! -z "$OC_PID" ]
     then
         echo "🏃 OpenConnect currently running.\n🙅‍♀️ Stopping it."
-        run="kill $OC_PID"
-
-        if [ ! -z $VERBOSE ]
-        then 
-            $run
-        else
-            $run &>/dev/null
-        fi
+        kill "$OC_PID"
     else
         echo "😴 OpenConnect currently not running."
     fi
