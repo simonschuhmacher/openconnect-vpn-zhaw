@@ -30,18 +30,18 @@ start_oc() {
         run=(
             "sudo"
             "openconnect-sso"
-            "--server $VPN_SERVER \
-            --user=$VPN_USER \
-            --browser-display-mode hidden \
-            -- \
-            --background \
-            --quiet"
+            "--server" "$VPN_SERVER"
+            "--user=$VPN_USER"
+            "--browser-display-mode" "hidden"
+            "--"
+            "--background"
         )
 
         if [ ! -z $VERBOSE ]
-        then 
+        then
             ${run[@]}
         else
+            run+=("--quiet")
             ${run[@]} &>/dev/null
         fi
 
